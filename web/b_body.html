@@ -1,0 +1,49 @@
+<body>
+<canvas id="gl" tabindex="0" aria-label="Peta 3D Republik Netizenia. Seret untuk menggeser, cubit atau gulir untuk zoom, dua jari atau klik kanan untuk memutar. Ketuk bangunan, kavling, atau warga."></canvas>
+<div id="labels" aria-hidden="true"></div>
+<div id="hud">
+  <div class="top">
+    <div class="row1">
+      <button class="chip" id="meChip" type="button"></button>
+      <div class="clock" id="clock" role="status"></div>
+    </div>
+    <div class="stats" id="stats"></div>
+    <div class="ticker" id="ticker" aria-live="polite">Memuat kota…</div>
+    <button class="donor" id="donor" type="button" hidden></button>
+    <div class="banner" id="banner" hidden></div>
+  </div>
+  <div class="bottom">
+    <button class="next" id="next" type="button" hidden></button>
+    <div class="placebar" id="placebar" hidden></div>
+    <nav class="dock" id="dock" aria-label="Menu utama"></nav>
+  </div>
+</div>
+<div class="fabs" id="fabs">
+  <button class="fab" type="button" data-act="home" aria-label="Ke rumahku" title="Ke rumahku"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg></button>
+  <button class="fab" type="button" data-act="center" aria-label="Ke pusat kota" title="Ke pusat kota"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.5"/><path d="M12 1v4M12 19v4M1 12h4M19 12h4"/></svg></button>
+  <button class="fab" type="button" data-act="walk" aria-label="Jalan-jalan dengan tokohmu" title="Jalan-jalan dengan tokohmu"><svg viewBox="0 0 24 24"><circle cx="13" cy="4.5" r="2"/><path d="M10 21l2.5-6 2.5 2.5V21"/><path d="M8.5 11.5l3-3.5 3 2.5 2.5 1"/><path d="M11.5 8l-1 5.5"/></svg></button>
+  <button class="fab" type="button" data-act="photo" aria-label="Mode foto" title="Mode foto"><svg viewBox="0 0 24 24"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></button>
+  <button class="fab" type="button" data-act="rotate" aria-label="Putar kamera" title="Putar kamera"><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 11-2.3-5.7"/><path d="M20 4v5h-5"/></svg></button>
+</div>
+<section class="sheet" id="sheet" hidden aria-modal="false" role="dialog"></section>
+<div class="walkui" id="walkui" hidden>
+  <div class="walkhint" id="walkhint">Geser joystick untuk berjalan</div>
+  <button class="btn sm walkexit" type="button" data-act="walk-exit">Selesai</button>
+  <div class="joyzone" id="joyzone" aria-hidden="true"></div>
+  <div class="joy" id="joy" aria-label="Joystick"><i></i></div>
+  <button class="btn gold walkact" type="button" id="walkAct" data-act="walk-look" hidden>Lihat</button>
+  <div class="emotes" id="emotes" hidden><button class="wbtn" type="button" data-act="walk-emote" data-e="lambai" aria-label="Lambai">👋</button><button class="wbtn" type="button" data-act="walk-emote" data-e="joget" aria-label="Joget">🕺</button><button class="wbtn" type="button" data-act="walk-emote" data-e="duduk" aria-label="Duduk">🪑</button><button class="wbtn" type="button" data-act="walk-emote" data-e="hore" aria-label="Hore">🙌</button></div>
+  <div class="walkpad">
+    <button class="wbtn p-chat" type="button" data-act="walk-chat" aria-label="Chat">💬</button>
+    <button class="wbtn p-emo" type="button" data-act="walk-emotes" aria-label="Emote">😀</button>
+    <button class="wbtn p-run" type="button" id="walkRun" data-act="walk-run" aria-pressed="false" aria-label="Lari">🏃</button>
+    <button class="wbtn jump" type="button" data-act="walk-jump" aria-label="Lompat">⬆</button>
+  </div>
+</div>
+<div class="photobar" id="photobar" hidden><label for="phour">Jam <b id="phourv">12:00</b><input type="range" id="phour" min="0" max="24" step="0.25"></label><button class="btn sm gold" type="button" data-act="photo-save">Simpan foto</button><button class="btn sm" type="button" data-act="photo-exit">Selesai</button></div>
+<div class="modal" id="modal" hidden></div>
+<div id="toast" hidden role="status"></div>
+<div id="boot"><div class="bc"><div class="flag" style="width:64px;height:42px"><i style="background:#D9483B"></i><i style="background:#2F8F5B"></i><i style="background:#FAFAF5"></i></div><h1>Republik Netizenia</h1><div class="ld"><i></i></div></div></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js"></script>

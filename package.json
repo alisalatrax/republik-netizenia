@@ -1,0 +1,19 @@
+{
+  "name": "republik-netizenia",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Kota 3D di browser yang dibangun bersama pemain sungguhan (three.js + Supabase).",
+  "license": "MIT",
+  "scripts": {
+    "build": "node build.js",
+    "serve": "npx --yes http-server@14.1.1 dist -p 8080 -c-1",
+    "test:lib": "node -e \"const f=require('fs');f.mkdirSync('test/lib',{recursive:true});f.copyFileSync('node_modules/three/build/three.min.js','test/lib/three.min.js');f.copyFileSync('node_modules/@supabase/supabase-js/dist/umd/supabase.js','test/lib/supabase.js')\"",
+    "test": "npm run build && npm run test:lib && node test/flow.js && node test/walk_hp.js"
+  },
+  "devDependencies": {
+    "terser": "5.31.0",
+    "three": "0.128.0",
+    "@supabase/supabase-js": "2.117.3",
+    "playwright": "1.47.2"
+  }
+}

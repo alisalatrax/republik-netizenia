@@ -1,0 +1,7 @@
+node_modules/
+dist/
+config.js
+test/lib/
+test/out/
+.env
+*.bak
